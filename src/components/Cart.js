@@ -1,19 +1,27 @@
 import { Link } from 'react-router-dom';
 import { useContext, useEffect } from 'react';
 import { CartContext } from './CartContext';
+import { WrapperCart, TitleCart, ContentCart, Product, ProductDetail, ImageCart, Details, PriceDetail, ProductAmountContainer, ProductAmount, ProductPrice, Top, TopButton, TopText, Bottom, Summary, SummaryTitle, SummaryItem, SummaryItemText, SummaryItemPrice, Button } from './StyledComponents';
+import FormatNumber from "../utils/FormatNumber";
+
+import styled from "styled-components";
+
+const Info = styled.div`
+  flex: 3;
+`;
 
 const Cart = () => {
     const test = useContext(CartContext);
 
     return (
         <WrapperCart>
-            <TitleCart>YOUR CART</TitleCart>
+            <TitleCart>MI CHANGUITO</TitleCart>
             <Top>
-                <Link to='/'><TopButton>CONTINUE SHOPPING</TopButton></Link>
+                <Link to='/'><TopButton>SEGUIR COMPRANDO</TopButton></Link>
                 {
                     (test.cartList.length > 0)
-                    ? <TopButton type="filled" onClick={test.removeList}>DELETE ALL PRODUCTS</TopButton>
-                    : <TopText>Your cart is empty</TopText>
+                    ? <TopButton type="filled" onClick={test.removeList} style={{color:"red"}}>ELIMINAR LOS PRODUCTOS</TopButton>
+                    : <TopText>TU CARRITO ESTA VACIO</TopText>
                 }
             </Top>
             <ContentCart>
@@ -27,44 +35,44 @@ const Cart = () => {
                                 <ImageCart src={item.imgItem} />
                                 <Details>
                                 <span>
-                                    <b>Product:</b> {item.nameItem}
+                                    <b>Producto:</b> {item.nameItem}
                                 </span>
-                                <TopButton type="filled" onClick={() => test.deleteItem(item.idItem)}>DELETE</TopButton>
+                                 <TopButton type="filled" onClick={() => test.deleteItem(item.idItem)} style={{color:"red"}}>ELIMINAR</TopButton>
                                 </Details>
                             </ProductDetail>
                             <PriceDetail>
-                                <ProductAmountContainer>
-                                <ProductAmount>{item.qtyItem} item(s)</ProductAmount>
-                                /
-                                <ProductAmount>$ {item.costItem} each</ProductAmount>
-                                </ProductAmountContainer>
+                                <div>
+                                <p>{item.qtyItem} Producto(s)</p>
+                                <p>$ {item.costItem} cada uno</p>
+                                </div>
                                 <ProductPrice>$ {test.calcTotalPerItem(item.idItem)} </ProductPrice>
                             </PriceDetail>
                             </Product>
                             )
+
                     }
                 </Info>
                 {
                     test.cartList.length > 0 &&
                         <Summary>
-                            <SummaryTitle>ORDER SUMMARY</SummaryTitle>
+                            <SummaryTitle>RESUMEN DEL PEDIDO</SummaryTitle>
                             <SummaryItem>
                                 <SummaryItemText>Subtotal</SummaryItemText>
-                                <SummaryItemPrice><FormatNumber number={test.calcSubTotal()} /></SummaryItemPrice>
+                                <SummaryItemPrice  style={{color:"white"}}><FormatNumber number={test.calcSubTotal()} /></SummaryItemPrice>
                             </SummaryItem>
                             <SummaryItem>
-                                <SummaryItemText>Taxes</SummaryItemText>
-                                <SummaryItemPrice><FormatNumber number={test.calcTaxes()} /></SummaryItemPrice>
+                                <SummaryItemText  style={{color:"red"}}>Impuestos</SummaryItemText>
+                                <SummaryItemPrice  style={{color:"red"}}><FormatNumber number={test.calcTaxes()} /></SummaryItemPrice>
                             </SummaryItem>
                             <SummaryItem>
-                                <SummaryItemText>Taxes Discount</SummaryItemText>
-                                <SummaryItemPrice><FormatNumber number={-test.calcTaxes()} /></SummaryItemPrice>
+                                <SummaryItemText  style={{color:"green"}}>Descuentos</SummaryItemText>
+                                <SummaryItemPrice  style={{color:"green"}}><FormatNumber number={-test.calcTaxes()} /></SummaryItemPrice>
                             </SummaryItem>
                             <SummaryItem type="total">
                                 <SummaryItemText>Total</SummaryItemText>
-                                <SummaryItemPrice><FormatNumber number={test.calcTotal()} /></SummaryItemPrice>
+                                <SummaryItemPrice  style={{color:"white"}}><FormatNumber number={test.calcTotal()} /></SummaryItemPrice>
                             </SummaryItem>
-                            <Button>CHECKOUT NOW</Button>
+                            <Button>CHEQUEAR COMPRA</Button>
                         </Summary>
                 }
             </Bottom>

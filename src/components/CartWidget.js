@@ -1,14 +1,17 @@
 import { Badge } from "@material-ui/core";
 import { ShoppingCartOutlined } from "@material-ui/icons";
+import { useContext, useEffect } from 'react';
+import { CartContext } from "./CartContext";
 
 const CartWidget = () => {
-	return (
+    const test = useContext(CartContext);
 
-		<Badge badgeContent={4} color="secondary">
-		  <ShoppingCartOutlined style={{color:"white"}}/>
-
-		</Badge> 
-	);
+    return (
+        <Badge badgeContent={test.calcItemsQty()}  style={{color:"gold"}} color="secondary">
+            <ShoppingCartOutlined />
+        </Badge>
+    );
 }
 
 export default CartWidget;
+

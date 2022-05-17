@@ -19,9 +19,9 @@ const CartContextProvider = ({ children }) => {
                 }
             ]);
         } else {
-            //al encontrarlo, entonces aumentamos el qty de ese producto
             found.qtyItem += qty;
         }
+
     }
     
     const removeList = () => {
@@ -44,7 +44,7 @@ const CartContextProvider = ({ children }) => {
     }
 
     const calcTaxes = () => {
-        return calcSubTotal() * 0.18;
+        return calcSubTotal() * 0.08;
     }
 
     const calcTotal = () => {

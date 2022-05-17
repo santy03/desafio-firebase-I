@@ -1,40 +1,39 @@
+import ItemCount from './ItemCount';
 import ItemList from './ItemList';
-import customFetch from "../utils/customFetch";
+import customFetch from "../utils/CustomFetch";
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { collection, getDocs } from "firebase/firestore";
-import db from "../utils/firebaseConfig";
+import db  from "../utils/ConfiguracionFirebase";
 
 
 const ItemListContainer = () => {
     const [datos, setDatos] = useState([]);
     const { idCategory } = useParams();
 
-    //componentDidUpdate
+   
     useEffect(() => {
-        const fetchFrontFirestore = async () => {
+        const fetchFirestore = async () => {
             const querySnapshot = await getDocs(collection(db, "products"));
             const dataFromFirestore = querySnapshot.docs.map((doc) => ({
                 id: doc.id,
                 ...doc.data()
             }));
-            return dataFromFirestore
-        }    
-        fetchFrontFirestore()
+            return dataFromFirestore;
+        }
+        fetchFirestore()
             .then(result => setDatos(result))
             .catch(err => console.log(err));
-    }, [datos]);
-
-    //componentWillUnmount
-    useEffect(() => {
-        return (() => {
-            setDatos([]);
-        })
     }, []);
 
+    const onAdd = (qty) => {
+        alert("You have selected " + qty + " items.");
+    }
     return (
+        <>  
             <ItemList items={datos} />
-    );
+        </>
+    )
 }
 
 export default ItemListContainer;
