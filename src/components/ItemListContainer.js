@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { collection, getDocs } from "firebase/firestore";
 import db  from "../utils/ConfiguracionFirebase";
-
+import {fetchFirestore } from "../utils/fetchFirestore";
 
 const ItemListContainer = () => {
     const [datos, setDatos] = useState([]);
@@ -13,15 +13,7 @@ const ItemListContainer = () => {
 
    
     useEffect(() => {
-        const fetchFirestore = async () => {
-            const querySnapshot = await getDocs(collection(db, "products"));
-            const dataFromFirestore = querySnapshot.docs.map((doc) => ({
-                id: doc.id,
-                ...doc.data()
-            }));
-            return dataFromFirestore;
-        }
-        fetchFirestore()
+        fetchFirestore(idCategory)
             .then(result => setDatos(result))
             .catch(err => console.log(err));
     }, []);
