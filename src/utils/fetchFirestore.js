@@ -1,6 +1,6 @@
 import { query, orderBy, where, collection, getDocs } from '@firebase/firestore';
 import { doc, getDoc } from "firebase/firestore";
-import db from "./ConfiguracionFirebase";
+import db from "./firebaseConfig";
 
 export const fetchFirestore = async (idCategory) => {
     let q;

@@ -8,10 +8,10 @@ import { firestoreFetchOne } from "../utils/fetchFirestore";
 
 const ItemDetailContainer = () => {
     const [dato, setDato] = useState({});
-    const { idCategory } = useParams();
+    const { idItem } = useParams();
 
     useEffect(() => {
-        firestoreFetchOne(idCategory)
+        firestoreFetchOne(idItem)
             .then(result => setDato(result))
             .catch(err => console.log(err))
     }, []);

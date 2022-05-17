@@ -4,12 +4,12 @@ import { getFirestore } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCsK2JUZpO9my2AoE7zagkmmhVrKDbif-k",
-  authDomain: "la-casa-del-deporte.firebaseapp.com",
-  projectId: "la-casa-del-deporte",
-  storageBucket: "la-casa-del-deporte.appspot.com",
-  messagingSenderId: "180154368300",
-  appId: "1:180154368300:web:2eab31ca6585c455b7ac89"
+  apiKey: "AIzaSyBXdvbZGBrvFNueI4oUR_tWk19ULq7kbdA",
+  authDomain: "react-js-proyecto-final.firebaseapp.com",
+  projectId: "react-js-proyecto-final",
+  storageBucket: "react-js-proyecto-final.appspot.com",
+  messagingSenderId: "969784391375",
+  appId: "1:969784391375:web:3ee145128bfb834eb1e9ba"
 };
 
 // Initialize Firebase
